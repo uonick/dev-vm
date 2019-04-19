@@ -1,0 +1,29 @@
+---
+- name: Fix Oracle's GPG key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: A4A9406876FCBD3C456770C88C718D3B5072E1F5
+  changed_when: false
+
+- name: Add APT repo
+  apt_repository:
+    repo: "{{repository}}"
+    state: present
+    update_cache: yes
+    validate_certs: "no"
+  changed_when: false
+
+- name: Install MySQL {{version}} packages
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  apt:
+    name: "{{ packages }}"
+    state: present
+
+- name: Copy MySQL configuration
+  template:
+    src: "mysqld.cnf.j2"
+    dest: "/etc/mysql/mysql.conf.d/mysqld.cnf"
+    owner: "{{root_user}}"
+    group: "{{root_user}}"
+  changed_when: false

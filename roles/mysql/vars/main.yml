@@ -1,0 +1,14 @@
+root_password: root
+root_user: root
+
+# Databases
+mysql_databases:
+  - name: laravel
+    collation: utf8mb4_unicode_ci
+    encoding: utf8mb4
+
+
+# Users
+mysql_users:
+  - name: laravel
+    password: laravel

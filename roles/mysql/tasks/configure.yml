@@ -1,0 +1,40 @@
+---
+- name: Stop MySQL
+  service:
+    name: mysql
+    state: stopped
+  changed_when: false
+
+- name: Enable MYSQLD_OPTS
+  shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+  changed_when: false
+
+- name: Start MySQL in safe mode
+  service:
+    name: mysql
+    state: started
+  changed_when: false
+
+- name: Set root password
+  command: mysql -u {{ root_user }} --execute="ALTER USER '"{{ root_user }}"'@'localhost' IDENTIFIED WITH mysql_native_password BY '"{{ root_password }}"'; FLUSH PRIVILEGES;"
+  changed_when: false
+
+- name: Stop MySQL
+  service:
+    name: mysql
+    state: stopped
+  changed_when: false
+
+- name: Disable MYSQLD_OPTS
+  shell: systemctl unset-environment MYSQLD_OPTS
+  notify: Start MySQL
+  changed_when: false
+
+- name: Start MySQL
+  service:
+    name: mysql
+    state: started
+  changed_when: false
+
+- name: Set timezones
+  shell: mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -p{{ root_password }} -u{{ root_user }} mysql

@@ -1,0 +1,21 @@
+---
+- name: PPA setup
+  apt_repository:
+    validate_certs: no
+    repo: "{{ ppa }}"
+    state: present
+  changed_when: false
+
+- name: Install PHP {{ version }} packages
+  apt:
+    pkg: "{{ packages }}"
+    state: present
+    install_recommends: false
+    update_cache: true
+  changed_when: false
+
+- name: Install composer
+  shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+  changed_when: false
+  args:
+    warn: false

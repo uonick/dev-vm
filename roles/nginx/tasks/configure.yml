@@ -1,0 +1,17 @@
+---
+- name: Clear default host file
+  file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+
+- name: Create host file from template
+  template:
+    src: default.conf.j2
+    dest: /etc/nginx/sites-available/default
+
+- name: Apply settings
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
+

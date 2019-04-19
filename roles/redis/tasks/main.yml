@@ -1,0 +1,8 @@
+---
+- name: Install Redis server
+  apt:
+    name: redis-server
+    state: present
+  changed_when: false
+  notify: Restart redis
+

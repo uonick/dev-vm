@@ -1,0 +1,16 @@
+- name: Config override
+  template:
+    src: 99-overrides.ini.j2
+    dest: /etc/php/{{ version }}/fpm/conf.d/99-overrides.ini
+
+- name: Set socket path
+  ini_file:
+    path: /etc/php/{{ version }}/fpm/pool.d/www.conf
+    section: www
+    option: listen
+    value: /run/php/php-fpm.sock
+    mode: 0644
+    owner: root
+    group: root
+    backup: yes
+  notify: Restart php-fpm

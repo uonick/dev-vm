@@ -1,0 +1,12 @@
+---
+- name: Install MySQL
+  include_tasks: install.yml
+
+- name: Configure MySQL
+  include_tasks: configure.yml
+
+- name: Create MySQL databases
+  include_tasks: databases.yml
+
+- name: Create MySQL users
+  include_tasks: users.yml

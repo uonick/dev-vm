@@ -1,0 +1,43 @@
+server {
+    listen    80 default_server;
+    charset   utf-8;
+    index     index.php index.html index.htm;
+
+    server_name _;
+
+    root /code/public;
+
+    # index
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # allow execute all php files
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_index /index.php;
+        include fastcgi_params;
+        fastcgi_split_path_info       ^(.+\.php)(/.+)$;
+        fastcgi_param PATH_INFO       $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    # turn off cache
+    location ~* ^.+\.(js|css)$ {
+        expires -1;
+        sendfile off;
+    }
+
+    # disallow access to apache configs
+    location ~ /\.ht {
+        deny all;
+    }
+
+    # disallow access to git configs path
+    location ~ /\.git {
+        deny all;
+    }
+}

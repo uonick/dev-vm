@@ -1,0 +1,5 @@
+---
+- name: Restart php-fpm
+  service:
+    name: php{{version}}-fpm
+    state: restarted

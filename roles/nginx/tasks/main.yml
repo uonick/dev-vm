@@ -1,0 +1,12 @@
+---
+- name: Install Nginx
+  include_tasks: install.yml
+
+- name: Configure Nginx
+  include_tasks: configure.yml
+
+
+
+
+
+

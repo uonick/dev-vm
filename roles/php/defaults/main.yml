@@ -1,0 +1,21 @@
+---
+version: 7.3
+
+ppa: "ppa:ondrej/php"
+
+packages:
+  - php{{ version }}-mbstring
+  - php{{ version }}-opcache
+  - php{{ version }}-imagick
+  - php{{ version }}-common
+  - php{{ version }}-mysql
+  - php{{ version }}-curl
+  - php{{ version }}-tidy
+  - php{{ version }}-json
+  - php{{ version }}-cli
+  - php{{ version }}-fpm
+  - php{{ version }}-zip
+  - php{{ version }}-xml
+  - php{{ version }}-gd
+  - php-bcmath
+  - mcrypt

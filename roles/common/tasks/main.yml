@@ -1,0 +1,8 @@
+---
+- name: Install required libs
+  apt:
+    pkg: "{{ packages }}"
+    state: present
+    install_recommends: false
+    update_cache: true
+  changed_when: false

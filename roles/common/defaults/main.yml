@@ -1,0 +1,13 @@
+---
+packages:
+  - software-properties-common
+  - build-essential
+  - libmagickwand-dev
+  - lsb-core
+  - autoconf
+  - unzip
+  - zip
+  - curl
+  - wget
+  - make
+  - nano

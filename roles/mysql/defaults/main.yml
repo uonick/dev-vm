@@ -1,0 +1,14 @@
+---
+version: 8.0
+
+repository: "deb http://repo.mysql.com/apt/ubuntu bionic mysql-{{version}}"
+
+packages:
+  - python-pymysql
+  - python-mysqldb
+  - mysql-common
+  - mysql-server
+  - mysql-client
+
+
+
