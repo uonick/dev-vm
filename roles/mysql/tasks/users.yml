@@ -4,6 +4,7 @@
     login_user: "{{ root_password }}"
     login_password: "{{ root_password }}"
     name: "{{ item.name }}"
+    host: '%'
     check_implicit_admin: yes
     password: "{{ item.password }}"
     priv: "{{ item.priv | default('*.*:ALL') }}"

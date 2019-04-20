@@ -1,6 +1,6 @@
 .git
 .vagrant
-.log
+*.log
 *.retry
 .idea
 .DS_Store
