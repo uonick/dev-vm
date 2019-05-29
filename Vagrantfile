@@ -5,7 +5,11 @@ Vagrant.configure(2) do |config|
 
     config.vm.box = "ubuntu/bionic64"
     config.vm.box_check_update = true
-    config.vm.hostname = "dev-vm"
+    config.vm.hostname = "vagrant"
+    config.vm.define "dev-vm"
+    config.vm.provider :virtualbox do |vb|
+        vb.name = "vagrant-dev-vm"
+    end
 
     config.vm.network :forwarded_port, guest: 80, host: 8080
     config.vm.network :forwarded_port, guest: 3306, host: 3306
