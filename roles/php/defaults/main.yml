@@ -18,4 +18,5 @@ packages:
   - php{{ version }}-xml
   - php{{ version }}-gd
   - php-bcmath
+  - php-xdebug
   - mcrypt
